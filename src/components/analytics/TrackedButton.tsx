@@ -1,4 +1,4 @@
-import { trackCTAClick } from '../../lib/gtag';
+import * as gtag from '../../lib/gtag';
 
 interface TrackedButtonProps {
   children: React.ReactNode;
@@ -20,7 +20,12 @@ export default function TrackedButton({
   ...props 
 }: TrackedButtonProps) {
   const handleClick = () => {
-    trackCTAClick(buttonName, location);
+    gtag.event({
+      action: 'cta_click',
+      category: 'User Engagement',
+      label: `${buttonName} - ${location}`,
+      value: 1
+    });
     if (onClick) onClick();
   };
 
