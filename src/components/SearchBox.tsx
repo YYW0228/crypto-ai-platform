@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { trackSearch } from './Analytics';
+import * as gtag from '../lib/gtag';
 
 interface SearchResult {
   title: string;
@@ -78,7 +78,12 @@ export const SearchBox = () => {
     setIsLoading(false);
     
     // 追踪搜索行为
-    trackSearch(searchQuery, filtered.length);
+    gtag.event({
+      action: 'search',
+      category: 'User Behavior',
+      label: searchQuery,
+      value: filtered.length
+    });
   };
 
   useEffect(() => {

@@ -143,7 +143,7 @@ async function saveToLocalDatabase(email: string) {
     
     return { success: true, email: email };
   } catch (error) {
-    throw new Error(`Local storage error: ${error.message}`);
+    throw new Error(`Local storage error: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
 

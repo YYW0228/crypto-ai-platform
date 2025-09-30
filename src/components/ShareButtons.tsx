@@ -1,4 +1,4 @@
-import { trackShare } from './Analytics';
+import * as gtag from '../lib/gtag';
 
 interface ShareButtonsProps {
   title: string;
@@ -22,7 +22,12 @@ export const ShareButtons = ({ title, url, description }: ShareButtonsProps) => 
   };
 
   const handleShare = (platform: string, shareUrl: string) => {
-    trackShare(platform, title);
+    gtag.event({
+      action: 'share',
+      category: 'Social Engagement',
+      label: `${platform} - ${title}`,
+      value: 1
+    });
     
     if (platform === 'wechat') {
       // 微信分享：复制链接到剪贴板
@@ -37,7 +42,12 @@ export const ShareButtons = ({ title, url, description }: ShareButtonsProps) => 
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(url).then(() => {
-      trackShare('copy_link', title);
+      gtag.event({
+        action: 'share',
+        category: 'Social Engagement', 
+        label: `copy_link - ${title}`,
+        value: 1
+      });
       alert('链接已复制到剪贴板！');
     });
   };

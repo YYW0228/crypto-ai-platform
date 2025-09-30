@@ -12,6 +12,10 @@ interface Post {
   date: string;
   tags?: string[];
   readingTime?: string;
+  difficulty?: string;
+  level?: string;
+  category?: string;
+  author?: string;
 }
 
 export default function Home({ posts }: { posts: Post[] }) {
