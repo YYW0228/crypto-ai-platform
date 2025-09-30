@@ -1,0 +1,46 @@
+{
+  "website": "Chainlink",
+  "analysis_date": "",
+  "hero_section": {
+    "value_proposition": "",
+    "main_cta": "",
+    "secondary_cta": "",
+    "layout_structure": ""
+  },
+  "color_system": {
+    "primary": "",
+    "secondary": "",
+    "accent": "",
+    "text_primary": "",
+    "text_secondary": "",
+    "background": ""
+  },
+  "typography": {
+    "h1": {
+      "font_family": "",
+      "font_size": "",
+      "font_weight": "",
+      "line_height": ""
+    },
+    "h2": {
+      "font_family": "",
+      "font_size": "",
+      "font_weight": "",
+      "line_height": ""
+    },
+    "body": {
+      "font_family": "",
+      "font_size": "",
+      "line_height": ""
+    }
+  },
+  "button_styles": {
+    "primary_button": {
+      "background": "",
+      "color": "",
+      "padding": "",
+      "border_radius": "",
+      "hover_effect": ""
+    }
+  }
+}

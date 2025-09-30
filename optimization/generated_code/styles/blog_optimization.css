@@ -1,0 +1,42 @@
+/* 基于 a16z crypto 分析的博客优化样式 */
+
+/* 文章容器 - 等待填入最佳宽度 */
+.article-container {
+  max-width: 720px; /* 待优化 */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 文章标题系统 - 等待填入最佳字体参数 */
+.article-title {
+  font-size: 2.5rem; /* 待优化 */
+  font-weight: 700;
+  line-height: 1.2; /* 待优化 */
+  margin-bottom: 1.5rem;
+  color: #1a1a1a; /* 待优化 */
+}
+
+/* 正文段落 - 等待填入最佳可读性参数 */
+.article-content p {
+  font-size: 1.125rem; /* 待优化 */
+  line-height: 1.7; /* 待优化 */
+  margin-bottom: 1.5rem;
+  color: #374151; /* 待优化 */
+}
+
+/* 代码块 - 等待填入专业样式 */
+.article-content code {
+  background-color: #f3f4f6; /* 待优化 */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* 引用块 - 等待填入设计细节 */
+.article-content blockquote {
+  border-left: 4px solid #3b82f6; /* 待优化 */
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #6b7280; /* 待优化 */
+}
