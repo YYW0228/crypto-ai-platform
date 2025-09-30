@@ -123,9 +123,11 @@ export const PriceWidget = () => {
       </div>
       
       <div className="mt-4 pt-3 border-t border-gray-100">
-        <p className="text-xs text-gray-500 text-center">
-          数据来源：CoinGecko API
-        </p>
+        <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiM4QzRGRkYiLz4KPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+CjxwYXRoIGQ9Im0xMiA2IDQgNi00IDZ6Ii8+Cjwvc3ZnPgo8L3N2Zz4K" className="w-4 h-4" alt="CoinGecko" />
+          <span className="font-medium text-green-600">实时数据 CoinGecko</span>
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+        </div>
       </div>
     </div>
   );
