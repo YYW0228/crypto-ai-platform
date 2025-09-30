@@ -18,7 +18,15 @@ export default function Post({ content, frontMatter }: { content: string; frontM
           <h1 className="text-4xl font-bold mb-4 text-gray-900">{frontMatter.title}</h1>
           <p className="text-gray-500 mb-8 text-lg">{frontMatter.date}</p>
           <div className="prose prose-lg max-w-none">
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown 
+              components={{
+                ol: ({children}) => <ol className="list-decimal list-inside space-y-3 text-gray-700">{children}</ol>,
+                ul: ({children}) => <ul className="list-disc list-inside space-y-3 text-gray-700">{children}</ul>,
+                li: ({children}) => <li className="leading-relaxed">{children}</li>
+              }}
+            >
+              {content}
+            </ReactMarkdown>
           </div>
         </article>
       </Layout>
@@ -43,7 +51,11 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
   // 确保日期是字符串格式，以避免序列化错误
   const serializedData = {
     ...data,
-    date: data.date ? data.date.toString() : data.date
+    date: data.date ? new Date(data.date).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }) : data.date
   };
   
   return { props: { content, frontMatter: serializedData } };
