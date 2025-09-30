@@ -280,15 +280,15 @@ export async function getStaticProps() {
     
     return {
       slug: filename.replace(/\.md$/, ''),
-      title: data.title,
-      description: data.description,
+      title: data.title || '',
+      description: data.description || '',
       date: data.date ? data.date.toString() : '',
       tags: data.tags || [],
-      readingTime: data.readingTime,
-      difficulty: data.difficulty,
-      level: data.level,
-      category: data.category,
-      author: data.author
+      readingTime: data.readingTime || '',
+      difficulty: data.difficulty || '',
+      level: data.level || '',
+      category: data.category || '',
+      author: data.author || ''
     };
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

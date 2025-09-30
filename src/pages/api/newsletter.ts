@@ -149,31 +149,35 @@ async function saveToLocalDatabase(email: string) {
 
 // Supabase 集成示例（如果使用 Supabase）
 async function subscribeToSupabase(email: string) {
-  const { createClient } = require('@supabase/supabase-js');
-  
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase configuration missing');
+  try {
+    const { createClient } = require('@supabase/supabase-js');
+    
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Supabase configuration missing');
+    }
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    const { data, error } = await supabase
+      .from('newsletter_subscribers')
+      .insert([
+        {
+          email: email,
+          subscribed_at: new Date().toISOString(),
+          source: 'website',
+          status: 'active'
+        }
+      ]);
+    
+    if (error) {
+      throw new Error(`Supabase error: ${error.message}`);
+    }
+    
+    return data;
+  } catch (error) {
+    throw new Error(`Supabase not available: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
-  
-  const supabase = createClient(supabaseUrl, supabaseKey);
-  
-  const { data, error } = await supabase
-    .from('newsletter_subscribers')
-    .insert([
-      {
-        email: email,
-        subscribed_at: new Date().toISOString(),
-        source: 'website',
-        status: 'active'
-      }
-    ]);
-  
-  if (error) {
-    throw new Error(`Supabase error: ${error.message}`);
-  }
-  
-  return data;
 }
