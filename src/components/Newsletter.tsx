@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { trackCTAClick } from './Analytics';
+import * as gtag from '../lib/gtag';
 
 // 参考Decrypt、The Block等顶级网站的Newsletter组件
 export const Newsletter = () => {
@@ -12,7 +12,12 @@ export const Newsletter = () => {
     setStatus('loading');
     
     // 追踪订阅尝试
-    trackCTAClick('newsletter_signup', 'newsletter_component');
+    gtag.event({
+      action: 'newsletter_signup_attempt',
+      category: 'User Engagement',
+      label: 'newsletter_component',
+      value: 1
+    });
 
     try {
       const response = await fetch('/api/newsletter', {
@@ -27,7 +32,12 @@ export const Newsletter = () => {
         setEmail('');
         
         // 追踪成功订阅
-        trackCTAClick('newsletter_signup_success', 'newsletter_component');
+        gtag.event({
+          action: 'newsletter_signup_success',
+          category: 'User Engagement',
+          label: 'newsletter_component',
+          value: 1
+        });
       } else {
         throw new Error('订阅失败');
       }
@@ -102,7 +112,12 @@ export const InlineNewsletter = () => {
     e.preventDefault();
     setStatus('loading');
     
-    trackCTAClick('inline_newsletter_signup', 'article_bottom');
+    gtag.event({
+      action: 'inline_newsletter_signup',
+      category: 'User Engagement', 
+      label: 'article_bottom',
+      value: 1
+    });
 
     // 模拟API调用
     setTimeout(() => {
