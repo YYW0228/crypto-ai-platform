@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { trackArticleRead } from '../../lib/gtag';
+import * as gtag from '../../lib/gtag';
 
 interface ReadingTrackerProps {
   slug: string;
@@ -18,13 +18,23 @@ export default function ReadingTracker({ slug, children }: ReadingTrackerProps) 
       // 追踪阅读到一半
       if (scrollPercent > 50 && !hasTrackedHalfway) {
         setHasTrackedHalfway(true);
-        trackArticleRead(`${slug}_halfway`, Math.round((Date.now() - startTime) / 1000));
+        gtag.event({
+          action: 'article_read_halfway',
+          category: 'Reading',
+          label: slug,
+          value: Math.round((Date.now() - startTime) / 1000)
+        });
       }
       
       // 追踪阅读完成
       if (scrollPercent > 90 && !hasTrackedComplete) {
         setHasTrackedComplete(true);
-        trackArticleRead(`${slug}_complete`, Math.round((Date.now() - startTime) / 1000));
+        gtag.event({
+          action: 'article_read_complete',
+          category: 'Reading', 
+          label: slug,
+          value: Math.round((Date.now() - startTime) / 1000)
+        });
       }
     };
 
